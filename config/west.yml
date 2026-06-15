@@ -1,9 +1,6 @@
 manifest:
   defaults:
-    # Pinned to v0.3.0 (2025-08-01): ZMK main has an unfixed BLE wake regression
-    # for the split central half (zmkfirmware/zmk#3207, Zephyr 4.1). v0.3.0 still
-    # has physical-layouts + pointing, which this shield/keymap need.
-    revision: v0.3.0
+    revision: main
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
