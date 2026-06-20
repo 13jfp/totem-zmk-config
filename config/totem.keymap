@@ -214,7 +214,7 @@
             >;
         };
 
-        adj_layer {
+        Mouse_layer {
             bindings = <
                 &none   &none  &none   &msc SCRL_UP    &none        &trans  &trans          &trans          &trans           &none
                 &trans  &none  &none   &mkp LCLK       &mkp RCLK    &trans  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &trans
