@@ -23,6 +23,16 @@
             // only fire the mod when chorded with an opposite-hand (right) key
 
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31 35 36 37>;
+            
+            // New behavior for accelerated movement
+            mmv_accel: mmv_accel {
+            compatible = "zmk,behavior-input-processor";
+            #binding-cells = <0>;
+            // The first number is the numerator, the second is the denominator (speed multiplier)
+            // 1 1 is standard, 3 2 or 2 1 will feel faster/accelerated.
+            input-processors = <&zip_xy_scaler 2 1>; 
+
+        };
         };
 
         hmr: homerow_mods_right {
@@ -216,10 +226,10 @@
 
         Mouse_layer {
             bindings = <
-                &none   &none  &none   &msc SCRL_UP    &none        &trans  &trans          &trans          &trans           &none
-                &trans  &none  &none   &mkp LCLK       &mkp RCLK    &trans  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &trans
-&studio_unlock  &none   &none  &none   &msc SCRL_DOWN  &none        &trans  &msc SCRL_LEFT  &mmv MOVE_DOWN  &msc SCRL_RIGHT  &none   &trans
-                               &trans  &trans          &trans       &trans  &trans          &trans
+                &none   &none  &none   &msc SCRL_UP    &none        &trans  &trans                &trans                &trans                   &none
+                &trans  &none  &none   &mkp LCLK       &mkp RCLK    &trans  &mmv_accel MOVE_LEFT  &mmv_accel MOVE_UP    &mmv_accel MOVE_RIGHT    &trans
+&studio_unlock  &none   &none  &none   &msc SCRL_DOWN  &none        &trans  &msc SCRL_LEFT        &mmv_accel MOVE_DOWN  &msc SCRL_RIGHT          &none   &trans
+                               &trans  &trans          &trans       &trans  &trans                &trans
             >;
         };
 
