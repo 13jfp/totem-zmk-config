@@ -3,7 +3,7 @@
     /* This attempts to wrap the virtual mouse stream */
     virtual_mouse_listener {
         compatible = "zmk,input-processor-listener";
-        device = <&zip_xy_scaler 3 2>; 
+        device = <&zip_xy_scaler 4 1>; 
         /*  <&zip_xy_scaler 2 1> = a multiplier of 2
             You can change this to 3 2 (1.5x) or 4 1 (4x) 
             depending on how snappy you want the pointer to feel. */
