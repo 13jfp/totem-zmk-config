@@ -58,19 +58,29 @@
             layers = <0>;
         };
 
-        combo_dictation {
+        Mac_Pwd {
             timeout-ms = <50>;
             key-positions = <0 21>;
-            bindings = <&kp LA(SPACE)>;
+            bindings = <&pwd_mac>;
             slow-release;
             layers = <0>;
         };
 
-        combo_enye {
+        Ctrl+Alt+Del {
             timeout-ms = <50>;
-            key-positions = <8 9>;
-            bindings = <&kp RA(N)>;
+            key-positions = <9 30>;
+            bindings = <&kp LC(LA(DEL))>;
             layers = <0>;
+        };
+
+        SSB_Pwd {
+            bindings = <&pwd_SSB>;
+            key-positions = <8 29>;
+        };
+
+        SSB_Logon {
+            bindings = <&SSB_ID>;
+            key-positions = <7 28>;
         };
     };
 
@@ -146,8 +156,22 @@
         ASG_Logon: ASG_Logon {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&SSB_ID &kp &kp>;
+            bindings = <&SSB_ID &kp TAB &pwd_SSB &Corp &SSB_Pin>;
             label = "ASG_LOGON";
+        };
+
+        Corp: Corp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp TAB &kp C>;
+            label = "CORP";
+        };
+
+        IMT_Logon: IMT_Logon {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&SSB_ID &SSB_Pin>;
+            label = "IMT_LOGON";
         };
     };
 
