@@ -1,225 +1,87 @@
-// Copyright (c) 2022 The ZMK Contributors
-// SPDX-License-Identifier: MIT
-
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+
+// Pointing device defaults 
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
 #include <dt-bindings/zmk/pointing.h>
 
-// Home row mods macro
-//#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-//#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
-
 / {
-    behaviors {
-        ht: hold_tap {
-            label = "hold_tap";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <100>;
-            bindings = <&kp>, <&kp>;
-        };
-    };
-
-    conditional_layers { compatible = "zmk,conditional-layers"; };
-
-    combos {
-        compatible = "zmk,combos";
-
-        Mac_Refresh {
-            bindings = <&kp LG(R)>;
-            key-positions = <0 1>;
-        };
-
-        mac_Pwd {
-            bindings = <&pwd_mac>;
-            key-positions = <0 20>;
-        };
-
-        Ctrl+Alt+Del {
-            bindings = <&kp LC(LA(DEL))>;
-            key-positions = <29 9>;
-        };
-
-        SSB_Pwd {
-            bindings = <&pwd_SSB>;
-            key-positions = <8 28>;
-        };
-
-        SSB_Logon {
-            bindings = <&SSB_ID>;
-            key-positions = <27 7>;
-        };
-
-        Scr_Toggle {
-            bindings = <&mcr_Scroll>;
-            key-positions = <10 11>;
-        };
-    };
-
+    // --- Macros from Cradio ---
     macros {
-        SSB_ID: logon_SSB {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_tap>,
-                <&kp E &kp N4 &kp NUMBER_1 &kp N2 &kp N0 &kp N9 &kp NUMBER_3>;
+        SSB_ID: logon_SSB { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_tap>, <&kp E &kp N4 &kp NUMBER_1 &kp N2 &kp N0 &kp N9 &kp NUMBER_3>; };
+        pwd_SSB: pwd_SSB { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_tap>, <&kp LS(L) &kp O &kp R &kp O &kp N2 &kp N0 &kp P &kp I &kp A &kp N &kp A &kp EXCLAMATION &kp EXCLAMATION>; };
+        Filter_Tog: Filter_Tog { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(D) &kp F &kp F>; };
+        pwd_mac: pwd_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_tap_time 75>, <&kp NUMBER_2 &kp N9 &kp N9 &kp N7 &kp N9 &kp NUMBER_2 &kp NUMBER_4 &kp N5 &kp N8>; };
+        InsertRow: InsertRow { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(I) &kp R>; };
+        InsertCol: InsertCol { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(I) &kp C>; };
+        PasteValues: PasteValues { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(E) &kp S &kp V &kp KP_ENTER>; };
+        PasteSpecial: PasteSpecial { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(E) &kp S &kp V>; };
+        SSB_Pin: SSB_Pin { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp TAB &kp N7 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp N5>; };
+        ASG_Logon: ASG_Logon { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&SSB_ID &kp TAB &pwd_SSB &Corp &SSB_Pin>; };
+        IMT_Logon: IMT_Logon { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&SSB_ID &SSB_Pin>; };
+        Corp: Corp { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp TAB &kp C>; };
+        mcr_Scroll: mcr_Screen { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp SCROLLLOCK>; };
+    };
 
-            label = "LOGON_SSB";
-        };
-
-        pwd_SSB: pwd_SSB {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_tap>,
-                <&kp LS(L) &kp O &kp R &kp O &kp N2 &kp N0 &kp P &kp I &kp A &kp N &kp A &kp EXCLAMATION &kp EXCLAMATION>;
-
-            label = "PWD_SSB";
-        };
-
-        Filter_Tog: Filter_Tog {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(D) &kp F &kp F>;
-            label = "FILTER_TOG";
-        };
-
-        pwd_mac: pwd_mac {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_tap_time 75>,
-                <&kp NUMBER_2 &kp N9 &kp N9 &kp N7 &kp N9 &kp NUMBER_2 &kp NUMBER_4 &kp N5 &kp N8>;
-
-            label = "PWD_MAC";
-        };
-
-        InsertRow: InsertRow {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(I) &kp R>;
-            label = "INSERTROW";
-        };
-
-        InsertCol: InsertCol {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(I) &kp C>;
-            label = "INSERTCOL";
-        };
-
-        PasteValues: PasteValues {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(E) &kp S &kp V &kp KP_ENTER>;
-            label = "PASTEVALUES";
-        };
-
-        PasteSpecial: PasteSpecial {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(E) &kp S &kp V>;
-            label = "PASTESPECIAL";
-        };
-
-        SSB_Pin: SSB_Pin {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp TAB &kp N7 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp N5>;
-            label = "SSB_PIN";
-        };
-
-        ASG_Logon: ASG_Logon {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&SSB_ID &kp TAB &pwd_SSB &Corp &SSB_Pin>;
-            label = "ASG_LOGON";
-        };
-
-        IMT_Logon: IMT_Logon {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&SSB_ID &SSB_Pin>;
-            label = "IMT_LOGON";
-        };
-
-        Corp: Corp {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp TAB &kp C>;
-            label = "CORP";
-        };
-
-        mcr_Scroll: mcr_Screen {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SCROLLLOCK>;
-            label = "MCR_SCREEN";
-        };
+    behaviors {
+        // Homerow mods [cite: 55, 58]
+        hml: homerow_mods_left { compatible = "zmk,behavior-hold-tap"; #binding-cells = <2>; tapping-term-ms = <200>; quick-tap-ms = <175>; flavor = "balanced"; bindings = <&kp>, <&kp>; hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31 35 36 37>; };
+        hmr: homerow_mods_right { compatible = "zmk,behavior-hold-tap"; #binding-cells = <2>; tapping-term-ms = <200>; quick-tap-ms = <175>; flavor = "balanced"; bindings = <&kp>, <&kp>; hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25 32 33 34>; };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        ColemakDH_layer {
+        base_layer {
             bindings = <
-&mt LG(Q) Q  &mt LALT W          &mt LC(X) F  &mt LA(PRINTSCREEN) P  &mt LC(B) B    &kp J        &kp L         &mt LC(U) U  &mt LALT Y            &mt LG(SEMI) SEMI
-&mt LSHFT A  &kp R               &kp S        &kp T                  &mt LSHFT G    &mt LSHFT M  &kp N         &kp E        &kp I                 &mt RSHFT O
-&mt LC(Z) Z  &mt LEFT_CONTROL X  &mt LC(C) C  &mt LC(V) D            &mt LC(X) V    &kp K        &mt LC(N1) H  &kp COMMA    &mt LEFT_CONTROL DOT  &kp FSLH
-                                              &lt 1 BSPC             &lt 4 TAB      &lt 3 ENTER  &lt 2 SPACE
+                &mt LG(Q) Q  &mt LALT W  &mt LC(X) F  &mt LA(PRINTSCREEN) P  &mt LC(B) B    &kp J  &kp L  &mt LC(U) U  &mt LALT Y  &mt LG(SEMI) SEMI
+                &mt LSHFT A  &kp R       &kp S        &kp T                  &mt LSHFT G    &mt LSHFT M  &kp N  &kp E  &kp I  &mt RSHFT O
+                &mt LC(Z) Z  &mt LCTRL X &mt LC(C) C  &mt LC(V) D            &mt LC(X) V    &kp K  &mt LC(N1) H  &kp COMMA  &mt LCTRL DOT  &kp FSLH
+                                         &lt 1 BSPC   &lt 4 TAB              &lt 3 ENTER    &lt 2 SPACE
             >;
         };
 
-        Misc_Layer {
+        misc_layer {
             bindings = <
-&kp EXCL    &kp AT_SIGN        &kp HASH       &kp PERCENT    &mt PRINTSCREEN LA(PRINTSCREEN)    &none     &kp TILDE                  &kp GRAVE                        &caps_word                   &none
-&kp INSERT  &kp LC(PAGE_DOWN)  &kp PAGE_DOWN  &kp PAGE_UP    &kp POUND                          &kp HOME  &mt LC(LS(LEFT)) LS(LEFT)  &mt LC(LS(UP)) LS(UP)            &mt LC(LS(RIGHT)) LS(RIGHT)  &kp AMPS
-&kp ESC     &kp LC(PAGE_UP)    &kp PAGE_DOWN  &kp PAGE_DOWN  &none                              &kp END   &kp SQT                    &mt LC(LS(DOWN_ARROW)) LS(DOWN)  &kp DQT                      &none
-                                              &trans         &trans                             &none     &sl 5
+                &kp EXCL    &kp AT     &kp HASH   &kp PERCENT &mt PRINTSCREEN LA(PRINTSCREEN)   &none  &kp TILDE  &kp GRAVE  &caps_word  &none
+                &kp INSERT  &kp LC(PDN)&kp PDN    &kp PUP     &kp POUND                         &kp HOME &kp LS(LEFT) &kp LS(UP) &kp LS(RIGHT) &kp AMPS
+                &kp ESC     &kp LC(PUP)&kp PDN    &kp PDN     &none                             &kp END &kp SQT   &kp LS(DOWN) &kp DQT &none
+                                       &trans     &trans      &none                             &sl 5
             >;
         };
 
-        NumSym_Layer {
+        numsym_layer {
             bindings = <
-&kp KP_NUMLOCK  &kp N1  &kp N2  &kp N3     &kp PLUS        &none   &kp SCROLLLOCK                 &none                      &none                      &none
-&kp DOT         &kp N4  &kp N5  &kp N6     &kp N0          &none   &mt LC(LEFT_ARROW) LEFT_ARROW  &mt LC(UP_ARROW) UP_ARROW  &mt LC(RIGHT_ARROW) RIGHT  &kp BSLH
-&kp MINUS       &kp N7  &kp N8  &kp N9     &kp ASTERISK    &none   &kp UNDER                      &mt LC(DOWN) DOWN_ARROW    &kp AMPERSAND              &kp PIPE
-                                &kp EQUAL  &kp DEL         &trans  &trans
+                &kp KP_NUM  &kp N1  &kp N2  &kp N3  &kp PLUS      &none  &kp SCROLLLOCK  &none  &none  &none
+                &kp DOT     &kp N4  &kp N5  &kp N6  &kp N0        &none  &kp LEFT        &kp UP &kp RIGHT &kp BSLH
+                &kp MINUS   &kp N7  &kp N8  &kp N9  &kp ASTERISK  &none  &kp UNDER       &kp DOWN &kp AMPS &kp PIPE
+                                    &kp EQUAL &kp DEL &trans      &trans
             >;
         };
 
-        Funct_Layer {
+        funct_layer {
             bindings = <
-&none  &kp F1  &kp F2  &kp F3  &kp F10    &none   &none           &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &none
-&none  &kp F4  &kp F5  &kp F6  &kp F12    &none   &kp AMPS        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH
-&none  &kp F7  &kp F8  &kp F9  &kp F11    &none   &kp UNDERSCORE  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE
-                       &trans  &trans     &trans  &trans
+                &none &kp F1 &kp F2 &kp F3 &kp F10 &none &none &kp LBKT &kp RBKT &none
+                &none &kp F4 &kp F5 &kp F6 &kp F12 &none &kp AMPS &kp LPAR &kp RPAR &kp BSLH
+                &none &kp F7 &kp F8 &kp F9 &kp F11 &none &kp UNDER &kp LBRC &kp RBRC &kp PIPE
+                             &trans &trans &trans &trans
             >;
         };
 
-        Mouse_Layer {
+        mouse_layer {
             bindings = <
-&none  &none       &Filter_Tog  &msc SCRL_UP    &none        &none          &none           &none           &none            &none
-&none  &InsertRow  &none        &mkp LCLK       &mkp RCLK    &PasteSpecial  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &none
-&none  &none       &InsertCol   &msc SCRL_DOWN  &none        &PasteValues   &msc SCRL_LEFT  &mmv MOVE_DOWN  &msc SCRL_RIGHT  &none
-                                &none           &none        &none          &none
-            >;
-        };
-
-        BT_Layer {
-            bindings = <
-&none      &kp LG(W)  &kp LG(F)  &kp LG(P)  &none    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bootloader
-&none      &kp LG(R)  &kp LG(S)  &kp LG(T)  &none    &none       &kp LG(N)     &none         &none         &sys_reset
-&kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none    &none       &none         &none         &none         &none
-                                 &none      &none    &none       &none
+                &none &none &Filter_Tog &msc SCRL_UP &none       &none &none &none &none &none
+                &none &InsertRow &none &mkp LCLK &mkp RCLK       &PasteSpecial &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_RIGHT &none
+                &none &none &InsertCol &msc SCRL_DOWN &none      &PasteValues &msc SCRL_LEFT &mmv MOVE_DOWN &msc SCRL_RIGHT &none
+                                   &none &none &none &none
             >;
         };
     };
+};
+
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
 };
