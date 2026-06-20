@@ -41,56 +41,61 @@
 
         ColemakDH_layer {
             bindings = <
-                &mt LG(Q) Q  &mt LALT W  &mt LC(X) F  &mt LA(PRINTSCREEN) P  &mt LC(B) B    &kp J  &kp L  &mt LC(U) U  &mt LALT Y  &mt LG(SEMI) SEMI
-                &ht LSHFT A  &kp R       &kp S        &kp T                  &ht LSHFT G    &ht LSHFT M  &kp N  &kp E  &kp I  &ht RSHFT O
-                &mt LC(Z) Z  &mt LCTRL X &mt LC(C) C  &mt LC(V) D            &mt LC(X) V    &kp K  &mt LC(N1) H  &kp COMMA  &mt LCTRL DOT  &kp FSLH
-                                         &lt 1 BSPC   &lt 4 TAB              &lt 3 ENTER    &lt 2 SPACE
+&mt LG(Q) Q  &mt LALT W          &mt LC(X) F  &mt LA(PRINTSCREEN) P  &mt LC(B) B    &kp J        &kp L         &mt LC(U) U  &mt LALT Y            &mt LG(SEMI) SEMI
+&ht LSHFT A  &kp R               &kp S        &kp T                  &ht LSHFT G    &ht LSHFT M  &kp N         &kp E        &kp I                 &ht RSHFT O
+&mt LC(Z) Z  &mt LEFT_CONTROL X  &mt LC(C) C  &mt LC(V) D            &mt LC(X) V    &kp K        &mt LC(N1) H  &kp COMMA    &mt LEFT_CONTROL DOT  &kp FSLH
+                                              &lt 1 BSPC             &lt 4 TAB      &lt 3 ENTER  &lt 2 SPACE
             >;
         };
 
         Misc_Layer {
             bindings = <
-                &kp EXCL    &kp AT      &kp HASH    &kp PERCENT &mt PRINTSCREEN LA(PRINTSCREEN)   &none    &kp TILDE  &kp GRAVE  &caps_word  &none
-                &kp INSERT  &kp LC(PDN) &kp PDN     &kp PUP     &kp POUND                         &kp HOME &kp LS(LEFT) &kp LS(UP) &kp LS(RIGHT) &kp AMPS
-                &kp ESC     &kp LC(PUP) &kp PDN     &kp PDN     &none                             &kp END  &kp SQT    &kp LS(DOWN) &kp DQT &none
-                                        &trans      &trans      &none                             &sl 5
+&kp EXCL    &kp AT_SIGN        &kp HASH       &kp PERCENT    &mt PRINTSCREEN LA(PRINTSCREEN)    &none     &kp TILDE                  &kp GRAVE                        &caps_word  &none
+&kp INSERT  &kp LC(PAGE_DOWN)  &kp PAGE_DOWN  &kp PAGE_UP    &kp POUND                          &kp HOME  &mt LC(LS(LEFT)) LS(LEFT)  &mt LC(LS(UP)) LS(UP)            &mt LC(LS(RIGHT)) LS(RIGHT)  &kp AMPS
+&kp ESC     &kp LC(PAGE_UP)    &kp PAGE_DOWN  &kp PAGE_DOWN  &none                              &kp END   &kp SQT                    &mt LC(LS(DOWN_ARROW)) LS(DOWN)  &kp DQT      &none
+                                              &trans         &trans                             &none     &sl 5
             >;
         };
 
         NumSym_Layer {
             bindings = <
-                &kp KP_NUM  &kp N1  &kp N2  &kp N3  &kp PLUS      &none  &kp SCROLLLOCK  &none  &none  &none
-                &kp DOT     &kp N4  &kp N5  &kp N6  &kp N0        &none  &kp LEFT        &kp UP &kp RIGHT &kp BSLH
-                &kp MINUS   &kp N7  &kp N8  &kp N9  &kp ASTERISK  &none  &kp UNDER       &kp DOWN &kp AMPS &kp PIPE
-                                    &kp EQUAL &kp DEL &trans      &trans
+&kp KP_NUMLOCK  &kp N1  &kp N2  &kp N3     &kp PLUS        &none   &kp SCROLLLOCK                 &none                      &none                      &none
+&kp DOT         &kp N4  &kp N5  &kp N6     &kp N0          &none   &mt LC(LEFT_ARROW) LEFT_ARROW  &mt LC(UP_ARROW) UP_ARROW  &mt LC(RIGHT_ARROW) RIGHT  &kp BSLH
+&kp MINUS       &kp N7  &kp N8  &kp N9     &kp ASTERISK    &none   &kp UNDER                      &mt LC(DOWN) DOWN_ARROW    &kp AMPERSAND              &kp PIPE
+                                &kp EQUAL  &kp DEL         &trans  &trans
             >;
         };
 
         Funct_Layer {
             bindings = <
-                &none &kp F1 &kp F2 &kp F3 &kp F10 &none &none &kp LBKT &kp RBKT &none
-                &none &kp F4 &kp F5 &kp F6 &kp F12 &none &kp AMPS &kp LPAR &kp RPAR &kp BSLH
-                &none &kp F7 &kp F8 &kp F9 &kp F11 &none &kp UNDER &kp LBRC &kp RBRC &kp PIPE
-                             &trans &trans &trans &trans
+&none  &kp F1  &kp F2  &kp F3  &kp F10    &none   &none           &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &none
+&none  &kp F4  &kp F5  &kp F6  &kp F12    &none   &kp AMPS        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH
+&none  &kp F7  &kp F8  &kp F9  &kp F11    &none   &kp UNDERSCORE  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE
+                       &trans  &trans     &trans  &trans
             >;
         };
 
         Mouse_Layer {
             bindings = <
-                &none &none &Filter_Tog &msc SCRL_UP &none       &none &none &none &none &none
-                &none &InsertRow &none &mkp LCLK &mkp RCLK       &PasteSpecial &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_RIGHT &none
-                &none &none &InsertCol &msc SCRL_DOWN &none      &PasteValues &msc SCRL_LEFT &mmv MOVE_DOWN &msc SCRL_RIGHT &none
-                                   &none &none &none &none
+&none  &none       &Filter_Tog  &msc SCRL_UP    &none        &none          &none           &none           &none            &none
+&none  &InsertRow  &none        &mkp LCLK       &mkp RCLK    &PasteSpecial  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &none
+&none  &none       &InsertCol   &msc SCRL_DOWN  &none        &PasteValues   &msc SCRL_LEFT  &mmv MOVE_DOWN  &msc SCRL_RIGHT  &none
+                                &none           &none        &none          &none
             >;
         };
 
         BT_Layer {
             bindings = <
-                &none &kp LG(W) &kp LG(F) &kp LG(P) &none &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bootloader
-                &none &kp LG(R) &kp LG(S) &kp LG(T) &none &none &kp LG(N) &none &none &sys_reset
-                &kp LG(Z) &kp LG(X) &kp LG(C) &kp LG(V) &none &none &none &none &none &none
-                                  &none &none &none &none
+&none      &kp LG(W)  &kp LG(F)  &kp LG(P)  &none    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bootloader
+&none      &kp LG(R)  &kp LG(S)  &kp LG(T)  &none    &none       &kp LG(N)     &none         &none         &sys_reset
+&kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &none    &none       &none         &none         &none         &none
+                                 &none      &none    &none       &none
             >;
         };
     };
+};
+
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
 };
