@@ -28,13 +28,6 @@
 
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31 35 36 37>;
             
-            // New behavior for accelerated movement
-            mmv_accel: mmv_accel {
-            compatible = "zmk,behavior-input-processor";
-            #binding-cells = <0>;
-            // The first number is the numerator, the second is the denominator (speed multiplier)
-            // 1 1 is standard, 3 2 or 2 1 will feel faster/accelerated.
-            input-processors = <&zip_xy_scaler 2 1>; 
             };
 
         hmr: homerow_mods_right {
