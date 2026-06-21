@@ -203,10 +203,10 @@
 
         MISC_layer {
             bindings = <
-       &kp EXCLAMATION  &kp AT  &kp HASH           &kp PERCENT    &mt PRINTSCREEN LA(PRINTSCREEN)    &none     &kp TILDE                              &kp GRAVE                          &caps_word                         &none
-       &kp INS          &none   &kp LC(PG_UP)      &kp PAGE_UP    &none                              &kp HOME  &mt LC(LS(LEFT_ARROW)) LS(LEFT_ARROW)  &mt LC(LS(UP_ARROW)) LS(UP_ARROW)  &mt LC(LS(RIGHT_ARROW)) LS(RIGHT)  &none
-&none  &kp ESCAPE       &none   &kp LC(PAGE_DOWN)  &kp PAGE_DOWN  &none                              &kp END   &kp SQT                                &mt LC(LS(DOWN)) LS(DOWN)          &kp DOUBLE_QUOTES                  &none  &none
-                                &trans             &trans         &trans                             &none     &sl 5                                  &none
+       &kp EXCLAMATION  &kp AT  &kp HASH           &kp PERCENT    &mt PRINTSCREEN LA(PRINTSCREEN)    &none              &kp TILDE                              &kp GRAVE                          &caps_word                         &none
+       &kp INS          &none   &kp LC(PG_UP)      &kp PAGE_UP    &none                              &mt LS(HOME) HOME  &mt LC(LS(LEFT_ARROW)) LS(LEFT_ARROW)  &mt LC(LS(UP_ARROW)) LS(UP_ARROW)  &mt LC(LS(RIGHT_ARROW)) LS(RIGHT)  &none
+&none  &kp ESCAPE       &none   &kp LC(PAGE_DOWN)  &kp PAGE_DOWN  &none                              &mt LS(END) END    &kp SQT                                &mt LC(LS(DOWN)) LS(DOWN)          &kp DOUBLE_QUOTES                  &none  &none
+                                &trans             &trans         &trans                             &none              &sl 5                                  &none
             >;
         };
 
