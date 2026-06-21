@@ -194,10 +194,10 @@
 
         base_layer {
             bindings = <
-          &kp Q             &mt LALT W   &mt LC(F) F       &mt LA(PRINTSCREEN) P  &mt LC(B) B         &kp J              &kp L               &mt LC(U) U        &mt RIGHT_ALT Y  &kp SEMICOLON
-          &mt LEFT_SHIFT A  &kp R        &kp S             &kp T                  &mt LEFT_SHIFT G    &mt RIGHT_SHIFT M  &kp N               &kp E              &kp I            &mt LEFT_SHIFT O
-&kp LBKT  &mt LC(Z) Z       &mt LC(X) X  &mt LC(C) C       &mt LC(V) D            &kp V               &kp K              &mt RC(NUMBER_1) H  &kp COMMA          &kp DOT          &kp FSLH          &kp BACKSLASH
-                                         &mt LEFT_GUI ESC  &lt CODE BSPC          &lt 4 TAB           &lt 3 ENTER        &lt NAV SPACE       &mt RIGHT_GUI ESC
+          &kp Q             &mt LALT W          &mt LC(F) F       &mt LA(PRINTSCREEN) P  &mt LC(B) B         &kp J              &kp L               &mt LC(U) U        &mt RIGHT_ALT Y           &kp SEMICOLON
+          &mt LEFT_SHIFT A  &kp R               &kp S             &kp T                  &mt LEFT_SHIFT G    &mt RIGHT_SHIFT M  &kp N               &kp E              &kp I                     &mt LEFT_SHIFT O
+&kp LBKT  &mt LC(Z) Z       &mt LEFT_CONTROL X  &mt LC(C) C       &mt LC(V) D            &kp V               &kp K              &mt RC(NUMBER_1) H  &kp COMMA          &mt RIGHT_CONTROL PERIOD  &kp FSLH          &kp BACKSLASH
+                                                &mt LEFT_GUI ESC  &lt CODE BSPC          &lt 4 TAB           &lt 3 ENTER        &lt NAV SPACE       &mt RIGHT_GUI ESC
             >;
         };
 
